@@ -1,7 +1,7 @@
 // /backend/user.js
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-//{ userId: 0, name: 'Ivan', age: 23 }
+
 // this will be our data base's data structure
 const UserSchema = new Schema(
     {

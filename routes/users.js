@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 
 
 // this is our create method
-router.post("/putUser", (req, res) => {
+router.post("/", (req, res) => {
     var user = new User();
 
     const name = req.body.name;
@@ -28,31 +28,6 @@ router.post("/putUser", (req, res) => {
     });
 });
 
-
-
-
-
-
-
-
 module.exports = router;
-
-
-// router.get('/:userId', function(req, res, next) {
-//     res.send(users[req.params.userId]);
-//
-// });
-//
-//
-// router.post('/', function(req, res, next) {
-// //var userDBId = users.length;
-// //var user = req.body;
-// //user.userId = userDBId;
-// res.sendStatus(200);
-// });
-//
-//
-//
-//
 
 
