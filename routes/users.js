@@ -12,6 +12,29 @@ router.get("/", (req, res) => {
     });
 });
 
+
+// this is our create method
+router.post("/putUser", (req, res) => {
+    var user = new User();
+
+    const name = req.body.name;
+    const age = req.body.age;
+
+    user.name = name;
+    user.age = age;
+    user.save(err => {
+        if (err) return res.json({ success: false, error: err });
+        return res.json({ success: true });
+    });
+});
+
+
+
+
+
+
+
+
 module.exports = router;
 
 
