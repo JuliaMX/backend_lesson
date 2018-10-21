@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+let mongoose = require("mongoose");
 const config = require('../config/config.json');
 
 // this is our MongoDB database
@@ -10,7 +10,7 @@ mongoose.connect(
     { useNewUrlParser: true }
 );
 
-var db = mongoose.connection;
+let db = mongoose.connection;
 db.once("open", () => console.log("connected to the database"));
 
 // checks if connection with the database is successful
