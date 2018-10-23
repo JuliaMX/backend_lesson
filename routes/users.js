@@ -11,19 +11,24 @@ router.get("/", (req, res) => {
     // });
 
     User.find(function(err, user) {
-        if (err) throw err;
 
-        // show the one user
-        return res.json({ success: true, data: user } );
+        // if (err) throw err;
+        //
+        // return res.json({ success: true, data: user } );
+
+        if (err) return res.json({ success: false, error: err });
+
+        return res.json({ success: true, data: user });
     });
 });
 
 router.get("/:id", (req, res) => {
 
     User.findById(req.params.id, function(err, user) {
-        if (err) throw err;
 
-        return res.json({ success: true, data: user } );
+        if (err) return res.json({ success: false, error: err });
+
+        return res.json({ success: true, data: user });
     });
 
 
@@ -39,9 +44,11 @@ router.post("/", (req, res) => {
 
     user.save(function(err) {
 
-        if (err) throw err;
+        if (err) return res.json({ success: false, error: err });
 
         return res.json({ success: true });
+
+
     });
 
 });
@@ -50,9 +57,10 @@ router.post("/", (req, res) => {
 router.put("/:id", (req, res) => {
 
     User.findByIdAndUpdate(req.params.id, req.body, function(err) {
-        if (err) throw err;
 
-        return res.json({ success: true } );
+        if (err) return res.json({ success: false, error: err });
+
+        return res.json({ success: true });
     });
 
 
@@ -62,9 +70,10 @@ router.put("/:id", (req, res) => {
 router.delete("/:id", (req, res) => {
 
     User.findByIdAndDelete(req.params.id, function(err) {
-        if (err) throw err;
 
-        return res.json({ success: true } );
+        if (err) return res.json({ success: false, error: err });
+
+        return res.json({ success: true });
     });
 
 
