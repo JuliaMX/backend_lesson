@@ -1,34 +1,26 @@
 let express = require('express');
 let router = express.Router();
-const User = require("../models/user");
+const Pet = require("../models/pet");
 
 router.get("/", (req, res) => {
 
-    // User.find((err, data) => {
-    //     if (err) return res.json({ success: false, error: err });
-    //
-    //     return res.json({ success: true, data: data });
-    // });
 
-    User.find(function(err, user) {
+    Pet.find(function(err, pet) {
 
-        // if (err) throw err;
-        //
-        // return res.json({ success: true, data: user } );
 
         if (err) return res.json({ success: false, error: err });
 
-        return res.json({ success: true, data: user });
+        return res.json({ success: true, data: pet });
     });
 });
 
 router.get("/:id", (req, res) => {
 
-    User.findById(req.params.id, function(err, user) {
+    Pet.findById(req.params.id, function(err, pet) {
 
         if (err) return res.json({ success: false, error: err });
 
-        return res.json({ success: true, data: user });
+        return res.json({ success: true, data: pet });
     });
 
 
@@ -38,12 +30,12 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
 
     console.log(req.body.toString());
-    let user = new User();
+    let pet = new Pet();
 
-    user.name = req.body.name;
-    user.age = req.body.age;
+    pet.name = req.body.name;
+    pet.type = req.body.type;
 
-    user.save(function(err) {
+    pet.save(function(err) {
 
         if (err) return res.json({ success: false, error: err });
 
@@ -57,7 +49,7 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
 
-    User.findByIdAndUpdate(req.params.id, req.body, function(err) {
+    Pet.findByIdAndUpdate(req.params.id, req.body, function(err) {
 
         if (err) return res.json({ success: false, error: err });
 
@@ -70,7 +62,7 @@ router.put("/:id", (req, res) => {
 
 router.delete("/:id", (req, res) => {
 
-    User.findByIdAndDelete(req.params.id, function(err) {
+    Pet.findByIdAndDelete(req.params.id, function(err) {
 
         if (err) return res.json({ success: false, error: err });
 
